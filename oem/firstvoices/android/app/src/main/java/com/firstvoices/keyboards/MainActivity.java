@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String FVDefault_PackageID = "fv_all";
+
     @SuppressWarnings("SetJavascriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
           lexicalModelInfo.put(KMManager.KMKey_LanguageID, FVShared.FVDefault_DictionaryLanguageID);
           lexicalModelInfo.put(KMManager.KMKey_LexicalModelID, FVShared.FVDefault_DictionaryModelID);
           lexicalModelInfo.put(KMManager.KMKey_LexicalModelName, FVShared.FVDefault_DictionaryModelName);
-          lexicalModelInfo.put(KMManager.KMKey_LexicalModelVersion, lexicalModelVersion);
+          lexicalModelINfo.put(KMManager.KMKey_LexicalModelVersion, lexicalModelVersion);
           KMManager.addLexicalModel(context, lexicalModelInfo);
           KMManager.registerAssociatedLexicalModel(FVShared.FVDefault_DictionaryLanguageID);
         }

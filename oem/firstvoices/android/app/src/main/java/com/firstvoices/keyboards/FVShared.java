@@ -244,7 +244,6 @@ final class FVShared {
                 KMManager.removeKeyboard(context, i);
         }
 
-        File resourceRoot =  new File(getResourceRoot());
         PackageProcessor kmpProcessor =  new PackageProcessor(resourceRoot);
 
         // Recreate active keyboards list
@@ -254,10 +253,10 @@ final class FVShared {
                     // Parse kmp.json for the keyboard info
                     Keyboard kbd = kmpProcessor.getKeyboard(
                       FVDefault_PackageID,
-                      keyboard.id,
-                      null); // get first associated language ID
+                      keyboard.id);
+                      "en", //TODO: use language code from kmp.json
+                      keyboard.name,
                     if (kbd != null) {
-                      // TODO: Override fonts to NotoSansCanadianAboriginal.ttf
                       KMManager.addKeyboard(context, kbd);
                     }
                 }
