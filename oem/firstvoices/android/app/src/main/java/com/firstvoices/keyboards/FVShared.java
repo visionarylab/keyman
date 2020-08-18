@@ -244,6 +244,7 @@ final class FVShared {
                 KMManager.removeKeyboard(context, i);
         }
 
+        File resourceRoot = new File(getResourceRoot());
         PackageProcessor kmpProcessor =  new PackageProcessor(resourceRoot);
 
         // Recreate active keyboards list
@@ -254,8 +255,7 @@ final class FVShared {
                     Keyboard kbd = kmpProcessor.getKeyboard(
                       FVDefault_PackageID,
                       keyboard.id);
-                      "en", //TODO: use language code from kmp.json
-                      keyboard.name,
+
                     if (kbd != null) {
                       KMManager.addKeyboard(context, kbd);
                     }
