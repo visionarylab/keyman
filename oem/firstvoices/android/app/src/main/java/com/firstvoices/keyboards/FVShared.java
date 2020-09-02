@@ -254,7 +254,8 @@ final class FVShared {
                     // Parse kmp.json for the keyboard info
                     Keyboard kbd = kmpProcessor.getKeyboard(
                       FVDefault_PackageID,
-                      keyboard.id);
+                      keyboard.id,
+                      null); // get first associated language ID
 
                     if (kbd != null) {
                       KMManager.addKeyboard(context, kbd);

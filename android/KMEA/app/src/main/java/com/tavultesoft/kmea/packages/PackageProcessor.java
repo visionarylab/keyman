@@ -649,43 +649,6 @@ public class PackageProcessor {
     return list;
   }
 
-  public Keyboard getKeyboard(String packageID, String keyboardID) {
-    File packagePath = new File(resourceRoot, KMManager.KMDefault_AssetPackages + File.separator + packageID);
-    Keyboard kbd = null;
-    JSONObject infoJSON = loadPackageInfo(packagePath);
-    try {
-      JSONArray keyboards = infoJSON.getJSONArray("keyboards");
-
-      for (int i=0; i < keyboards.length(); i++) {
-        JSONObject keyboard = keyboards.getJSONObject(i);
-        if (keyboardID.equals(keyboard.getString("id"))) {
-          JSONArray languages = keyboard.getJSONArray("languages");
-          // Only getting first language
-          for (int j = 0; j < 1; j++) {
-            JSONObject language = languages.getJSONObject(j);
-            String languageID = language.getString("id");
-            String languageName = language.getString("name");
-            kbd = new Keyboard(
-              packageID,
-              keyboard.optString("id"),
-              keyboard.optString("name"),
-              languageID,
-              languageName,
-              keyboard.optString("version"),
-              null,
-              "",
-              false,
-              KMManager.KMDefault_KeyboardFont,
-              KMManager.KMDefault_KeyboardFont);
-          }
-        }
-      }
-    } catch (Exception e) {
-      KMLog.LogException(TAG, "getKeyboard() ", e);
-    }
-    return kbd;
-  }
-
   /**
    * Parses installed kmp.json to get a specified keyboard with an associated language. If languageID not
    * provided, return the keyboard with the first associated language.
