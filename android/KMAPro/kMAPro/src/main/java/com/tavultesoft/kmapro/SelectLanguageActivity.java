@@ -6,9 +6,11 @@ package com.tavultesoft.kmapro;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.stepstone.stepper.StepperLayout;
@@ -79,7 +81,15 @@ public class SelectLanguageActivity extends AppCompatActivity implements
 
   @Override
   public void onError(VerificationError verificationError) {
-    Toast.makeText(this, "SelectLanguageActivity: " + verificationError.getErrorMessage(), Toast.LENGTH_SHORT).show();
+    Toolbar toolbar = findViewById(R.id.list_toolbar);
+    TextView textView = findViewById(R.id.bar_title);
+    String msg;
+    if (textView != null && textView.getText().equals(getString(R.string.all_languages_installed))) {
+      msg = "All languages already installed";
+    } else {
+      msg = "SelectLanguageActivity: " + verificationError.getErrorMessage();
+    }
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
   }
 
   @Override
